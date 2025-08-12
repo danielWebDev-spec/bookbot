@@ -1,3 +1,4 @@
+import sys
 from stats import get_num_words, count_char_occurrences
 
 
@@ -25,16 +26,24 @@ def print_stats(my_list):
         print(f"{item["char"]}: {item["num"]}") 
     
 def main():
-    text = get_book_text("books/frankenstein.txt")
-    char_count = count_char_occurrences(text)
-    sorted_list = sorted_list_of_dict(char_count)
+     if len(sys.argv) < 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
+     else:
+        book_path = sys.argv[1]  # Get path from command line
     
-    print("============ BOOKBOT ============")
-    print("Analyzing book found at books/frankenstein.txt...")
-    print("----------- Word Count ----------")
-    print(get_num_words(text))
-    print("--------- Character Count -------")
-    print_stats(sorted_list)
+        text = get_book_text(book_path)
+        
+        char_count = count_char_occurrences(text)
+        sorted_list = sorted_list_of_dict(char_count)
+    
+        print("============ BOOKBOT ============")
+        print(f"Analyzing book found at {book_path}...")
+        print("----------- Word Count ----------")
+        print(get_num_words(text))
+        print("--------- Character Count -------")
+        print_stats(sorted_list)
 
 main()
 
