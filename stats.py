@@ -1,8 +1,9 @@
-import string
-
 def get_num_words(text):
     num_words = len(text.split())
     return f"{num_words} words found in the document"
+
+def sort_on(items):
+    return items
 
 def count_char_occurrences(book):
     # start with empty dictionary
@@ -17,8 +18,5 @@ def count_char_occurrences(book):
             else:
                 letter_counts[char_lower] = 1 # first time seeing this letter
 
-    # alphabetical order
-    sorted_counts = dict(sorted(letter_counts.items()))
-
-    return sorted_counts
+    return letter_counts
 
